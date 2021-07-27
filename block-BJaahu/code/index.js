@@ -7,37 +7,37 @@
 //   - `getCorrectAnswer` (will return the correct answer of the quiz when the function is called)
 
 //First Approach
-// let methods = {
-//     isAnswerCorrect: function (index) {
-//         return index == correctAnswerIndex;
-//     },
-//     getCorrectAnswer: function () {
-//         return options[correctAnswerIndex];
-//     },
-// }
-// function Question(title,options,correctAnswerIndex){
-//     let question = Object.create(methods);
-//     question.title = title;
-//     question.options = options;
-//     question.correctAnswerIndex = correctAnswerIndex;
-//     return question;
-// }
+let methods = {
+    isAnswerCorrect: function (index) {
+        return index == this.correctAnswerIndex;
+    },
+    getCorrectAnswer: function () {
+        return this.options[this.correctAnswerIndex];
+    },
+}
+function Question(title,options,correctAnswerIndex){
+    let question = Object.create(methods);
+    question.title = title;
+    question.options = options;
+    question.correctAnswerIndex = correctAnswerIndex;
+    return question;
+}
 
 
 //Second Approach using function prototype
-// function Question(title,options,correctAnswerIndex){
-//     this.title = title;
-//     this.options = options;
-//     this.correctAnswerIndex = correctAnswerIndex;
-// }
-// Question.prototype = {
-//     isAnswerCorrect: function (index) {
-//         return index == correctAnswerIndex;
-//     },
-//     getCorrectAnswer: function () {
-//         return options[correctAnswerIndex];
-//     },
-// }
+function Question(title,options,correctAnswerIndex){
+    this.title = title;
+    this.options = options;
+    this.correctAnswerIndex = correctAnswerIndex;
+}
+Question.prototype = {
+    isAnswerCorrect: function (index) {
+        return index == this.correctAnswerIndex;
+    },
+    getCorrectAnswer: function () {
+        return this.options[this.correctAnswerIndex];
+    },
+}
 
 //Third Approach using class
 class Question {
@@ -47,10 +47,10 @@ class Question {
         this.correctAnswerIndex = correctAnswerIndex;
     }
     isAnswerCorrect(index) {
-        return index == correctAnswerIndex;
+        return index == this.correctAnswerIndex;
     }
     getCorrectAnswer() {
-        return options[correctAnswerIndex];
+        return this.options[this.correctAnswerIndex];
     }
 }
 
