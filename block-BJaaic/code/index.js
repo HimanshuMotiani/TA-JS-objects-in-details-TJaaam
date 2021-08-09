@@ -58,6 +58,7 @@ animalMethods = {
     },
     changeLocation: function (newLocation){
         this.location = newLocation
+        return this.location;
     },
     summary: function(){
         returns `I live in ${this.location} and I have ${this.numberOfLegs}`
@@ -77,22 +78,25 @@ dogMethods = {
     },
     changeName: function (name){
         this.name = name
+        return this.name
     },
     changeColor:function(color){
         this.color = color;
+        return this.color;
     },
     summary: function(){
-        returns `I am ${this.name} and I am of ${this.color} color. I can also bark`
+        return `I am ${this.name} and I am of ${this.color} color. I can also bark`
     }
 }
 Object.setPrototypeOf(dogMethods,animalMethods);
-function createDog(name, color){
-    let dogObj = Object.create(dogMethods);
+function createDog(location, numberOfLegs,name, color){
+    let dogObj = createAnimal(location, numberOfLegs)
+    Object.setPrototypeOf(dogObj,dogMethods)
     dogObj.name = name;
     dogObj.color = color;
     return dogObj;
 }
-let dog = new createDog("Shadow","brown");
+let dog = new createDog("Canada","4","Shadow","brown");
 
 catMethods = {
     meow: function(){
@@ -100,19 +104,22 @@ catMethods = {
     },
     changeName: function (newName){
         this.name = newName;
+        return this.name
     },
     changeColorOfEyes:function(newColor){
-        this.color = newColor;
+        this.colorOfEyes = newColor;
+        return this.colorOfEyes
     },
     summary: function(){
-        returns `I am ${this.name} and the color of my eyes are ${this.colorOfEyes}. I can also do meow meow`
+        return `I am ${this.name} and the color of my eyes are ${this.colorOfEyes}. I can also do meow meow`
     }
 }
 Object.setPrototypeOf(catMethods,animalMethods);
-function createCat(name, colorOfEyes){
-    let catObj = Object.create(catMethods);
+function createCat(location, numberOfLegs,name, colorOfEyes){
+    let catObj = createAnimal(location, numberOfLegs)
+    catObj = Object.setPrototypeOf(catObj,catMethods);
     catObj.name = name;
     catObj.colorOfEyes = colorOfEyes;
     return catObj;
 }
-let cat = new createCat("Mimi","white");
+let cat = new createCat("China","4","Mimi","white");
