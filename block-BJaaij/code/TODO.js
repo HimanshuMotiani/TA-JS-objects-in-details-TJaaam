@@ -31,23 +31,22 @@
 // After creating the Book and BookList class create 5 book object and add it to list. Test all the methods in Book and BookList class.
 
 class Book {
-    constructor(title, category, author, isRead = false, finishedDate) {
+    constructor(title, category, author) {
         this.title = title;
         this.category = category;
         this.author = author;
-        this.isRead = isRead;
-        this.finishedDate = finishedDate;
+        this.isRead = false;
+        this.finishedDate = null
     }
     markBookAsRead(){
         this.isRead = true;
         this.finishedDate = Date.now()
     }
 }
-class BookList extends Book{
-    constructor(title, category, author, isRead = false, finishedDate,booksArr,bookIndex){
-        super(title, category, author, isRead = false, finishedDate)
-        this.booksArr = booksArr;
-        this.bookIndex = bookIndex;
+class BookList{
+    constructor(){
+        this.booksArr = [];
+        this.bookIndex = 0;
     }
     add(bookList){
         bookList.forEach(book =>{
@@ -66,11 +65,15 @@ class BookList extends Book{
     }
     changeCurrentBook(index){
         this.bookIndex = index;
+        return this.bookIndex;
     }
 }
-let book1 = new BookList("test1","thriller","JK",false,Date.now,["a","b","c"],1)
-let book2 = new BookList("test2","action","JK",false,Date.now,["d","e","f"],2)
-let book3 = new BookList("test3","love","JK",false,Date.now,["g","h","i"],1)
-let book4 = new BookList("test4","cartoon","JK",false,Date.now,["j","k","l"],2)
-let book5 = new BookList("test5","bollywood","JK",false,Date.now,["m","n","o"],0)
+let book1 = new Book("test1","thriller","JK")
+let book2 = new Book("test2","action","JK")
+let book3 = new Book("test3","love","JK")
+let book4 = new Book("test4","cartoon","JK")
+let book5 = new Book("test5","bollywood","JK")
+
+let library = new BookList();
+library.add([book1,book2,book3,book4,book5])
  
