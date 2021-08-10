@@ -74,6 +74,9 @@ function PersonConstructor() {
   this.greet = function(){
     console.log(`hello`);
   }
+  this.introduce = function(){
+    console.log(`Hi, my name is ${this.name}`)
+  }
 }
 
 // /********* Uncomment this line to test your work! *********/
@@ -84,17 +87,14 @@ simon.greet(); // -> Logs 'hello'
 
 function personFromConstructor(name, age) {
   // add code here
-  this.name = name;
-  this.age = age;
-  this.greet = function(){
-    console.log(`hello`);
-  }
-  this.introduce = function(){
-    console.log(`Hi, my name is ${this.name}`)
-  }
+  let obj = new PersonConstructor();
+  obj.name = name;
+  obj.age = age;
+  return obj;
+  
 }
 
-var mike =new personFromConstructor('Mike', 30);
+var mike = personFromConstructor('Mike', 30);
 
 // /********* Uncomment these lines to test your work! *********/
 console.log(mike.name); // -> Logs 'Mike'
@@ -113,8 +113,9 @@ mike.introduce(); // -> Logs 'Hi, my name is Mike'
 /*** CHALLENGE 1 of 3 ***/
 
 class PersonClass {
-  constructor() {
+  constructor(name) {
     // add code here
+    this.name = name;
   }
 greet(){
 // add code here
@@ -130,9 +131,9 @@ george.greet(); // -> Logs 'hello'
 /*** CHALLENGE 2 of 3 ***/
 
 // add code here
-class DeveloperClass{
+class DeveloperClass extends PersonClass{
   constructor(name,age){
-    this.name = name;
+    super(name)
     this.age = age;
   }
   introduce(){
@@ -161,21 +162,17 @@ function userFactory(name, score) {
   user.score = score;
   return user;
 }
-
-var adminFunctionStore ={
-  /* Put code here */
-    sharePublicMessage:function(){
-      console.log(`Welcome users!`)
-    }
-  
-}
+var adminFunctionStore = Object.create(userFunctionStore);
 function adminFactory(name, score) {
   // Put code here
-  userFactory(name,score);
-  let obj = Object.create(adminFunctionStore);
+  let obj = userFactory(name,score);
+   obj = Object.setPrototypeOf(obj,adminFunctionStore);
+   obj.type = 'Admin';
   return obj;
 }
-Object.setPrototypeOf(adminFunctionStore,userFunctionStore)
+adminFunctionStore.sharePublicMessage = function(){
+  console.log("Welcome users!");
+}
 /* Put code here for a method called sharePublicMessage*/
 
 var adminFromFactory = adminFactory('Eva', 5);
