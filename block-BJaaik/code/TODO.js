@@ -34,6 +34,7 @@ class Player extends Person{
         console.log(`play`);
     }
 }
+
 class Cricketer extends Player{
     constructor(name,age,gender,sportName,teamName){
         super(name,age,gender,sportName)
