@@ -47,6 +47,7 @@ class Cricketer extends Player{
 }
 
 
+
 class Teacher extends Person{
     constructor(name,age,gender,instituteName){
         super(name,age,gender)
