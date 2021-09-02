@@ -40,11 +40,12 @@ class Cricketer extends Player{
         super(name,age,gender,sportName)
         this.teamName =teamName;
     }
-    
+
     playCricket(){
         console.log(`playCricket`);
     }
 }
+
 
 class Teacher extends Person{
     constructor(name,age,gender,instituteName){
